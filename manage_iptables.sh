@@ -1,5 +1,6 @@
 #!/bin/sh
 #len.pgh@gmail.com
+#Simple way to list, add, and remove ip's from iptables
 
 stage1() {
 
