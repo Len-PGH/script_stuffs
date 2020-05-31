@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Script created by: Len Graham len.pgh@gmail.com
+# !!Use at your own risk!!
 # This script will take authenticated users ip and auto add them to the ignoreip in fail2ban jail.local
 # Add to a cronjob if needed
 #
