@@ -22,7 +22,7 @@ cat /usr/src/auth_step_a | grep 'HTTP/1.1" 200' >> /usr/src/auth_step_b
 cut -b -14 /usr/src/auth_step_b  > /usr/src/auth_step_c && sort +2 -u /usr/src/auth_step_c > /usr/src/auth_step_d
 
 # Add a little lemon zest
-sed -i -e 's/^/ignoreip = 127.0.0.1\/8 /' auth_step_d
+sed -i -e 's/^/ignoreip = 127.0.0.1\/8 /' /usr/src/auth_step_d
 
 echo [DEFAULT] > /etc/fail2ban/jail.local && cat /usr/src/auth_step_d >> /etc/fail2ban/jail.local && cat /usr/src/jail.local.bak >> /etc/fail2ban/jail.local
 cat /usr/src/auth_step_d
