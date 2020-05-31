@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Script created by: Len Graham len.pgh@gmail.com
+# This script will take authenticated users ip and auto add them to the ignoreip in fail2ban jail.local
+# Add to a cronjob if needed
+#
+# Copy jail.local to work area
+
+cp -r /etc/fail2ban/jail.local /usr/src/jail.local.bak
+
+# read provision auth attempts
+
+cat /var/log/nginx/access.log | grep /app/provision >> /usr/src/auth_step_a
+
+# grep auth_step_a
+
+cat /usr/src/auth_step_a | grep 'HTTP/1.1" 200' >> /usr/src/auth_step_b
+
+# grep auth_step_b, cut, sort/remove duplicates
+
+cut -b -14 /usr/src/auth_step_b  > /usr/src/auth_step_c && sort +2 -u /usr/src/auth_step_c > /usr/src/auth_step_d
+
+# Add a little lemon zest
+sed -i -e 's/^/ignoreip = 127.0.0.1\/8 /' auth_step_d
+
+echo [DEFAULT] > /etc/fail2ban/jail.local && cat /usr/src/auth_step_d >> /etc/fail2ban/jail.local && cat /usr/src/jail.local.bak >> /etc/fail2ban/jail.local
+cat /usr/src/auth_step_d
