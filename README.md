@@ -3,4 +3,7 @@
 Just some stuff..
 
 #  manage_iptables.sh
-Simple way to add, remove, and list iptables.
+Simple way to add, remove, and list iptables.(Experimental)
+
+# f2b_auto_auth
+This script will take authenticated users ip and auto add them to the ignoreip in fail2ban jail.local
