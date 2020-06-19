@@ -7,7 +7,14 @@
 #
 # Copy jail.local to work area
 
-cp -r /etc/fail2ban/jail.local /usr/src/jail.local.bak
+FILE="/usr/src/jail.local.bak"
+
+if [ -f "$FILE" ];
+then
+   echo "One moment please"
+else
+   cp -r /etc/fail2ban/jail.local /usr/src/jail.local.bak >&2
+fi
 
 # read provision auth attempts
 
