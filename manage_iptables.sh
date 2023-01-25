@@ -10,9 +10,9 @@ stage1() {
         [Yy]*) stage2;;
         [Nn]*) stage3;;
         [Ee]*) exit 0;;
-	[Ss]*) stage0;;
-	[Ll]*) stage4;;
-	[Rr]*) stage5;;
+        [Ss]*) stage0;;
+        [Ll]*) stage4;;
+        [Rr]*) stage5;;
             *) echo "Done";;
     esac
 done
@@ -28,7 +28,7 @@ read -p "Enter IP Address to block: " badips
 # blocked ip summary
 echo "-----------------------------";
 echo "";
-echo "-----------------------------"; 
+echo "-----------------------------";
 echo "Blocking this IP Address: $badips";
 echo "";
 
@@ -101,11 +101,11 @@ stage5() {
 
 #iptables -D INPUT
 
-
-read -p  "remove which iptables line number entry " remove_numbers
+read -p  "Which iptables chain name " chain_name
+read -p  "Remove which iptables line number " remove_numbers
 #for remove_number in $remove_numbers; do
-echo	'iptables -D INPUT' $remove_numbers;
-command iptables -D INPUT $remove_numbers;
+echo    'iptables -D INPUT' $remove_numbers;
+command iptables -D $chain_name $remove_numbers;
 #done
 
 }
@@ -113,5 +113,3 @@ command iptables -D INPUT $remove_numbers;
 
 stage1
 exit 0
-
-
